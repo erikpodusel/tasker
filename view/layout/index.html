@@ -1,14 +1,20 @@
 {{ define "base" }}
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Tasker</title>
-    <link href="/static/style.css" rel="stylesheet">
+    <link href="/static/style.css" rel="stylesheet" />
     <script src="https://unpkg.com/htmx.org@1.9.6"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap"
+      rel="stylesheet"
+    />
   </head>
-  <body class="min-h-screen bg-dark text-white">
+  <body class="min-h-screen bg-dark text-white font-manrope">
     {{ template "content" . }}
   </body>
 </html>
