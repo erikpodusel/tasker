@@ -22,3 +22,5 @@ go.work
 node_modules/
 static/style.css
 tmp/build-errors.log
+tmp/
+cmd/tmp/
