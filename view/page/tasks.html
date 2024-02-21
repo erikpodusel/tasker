@@ -1,6 +1,12 @@
 {{ define "content" }}
-<section class="px-8 py-7 space-y-8">
+<article class="px-8 py-7 space-y-8">
   <h1 class="text-2xl font-bold">Daily tasks</h1>
-  <p>Today test {{ .Today }}</p>
-</section>
+  <div class="flex flex-row w-full justify-between">
+    {{ range .Weekdays }}
+    <section class="w-full space-x-6 h-full">
+      <h3 class="font-light">{{ . }}</h3>
+    </section>
+    {{ end }}
+  </div>
+</article>
 {{ end }}
