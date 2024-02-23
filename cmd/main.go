@@ -11,7 +11,10 @@ import (
 func main() {
 	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
 
+	// Services
 	tasksService := service.TasksService{}
+
+	// Handlers
 	tasksHandler := handler.TasksHandler{TasksService: tasksService}
 
 	http.HandleFunc("/", tasksHandler.ShowTasks)
