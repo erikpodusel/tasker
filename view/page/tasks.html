@@ -1,10 +1,18 @@
 {{ define "content" }}
-<article class="px-8 py-7 space-y-8">
-  <h1 class="text-2xl font-bold">Daily tasks</h1>
-  <div class="flex flex-row w-full justify-between">
-    {{ range .Weekdays }}
-    <section class="w-full space-x-6 h-full">
-      <h3 class="font-light">{{ . }}</h3>
+<article class="px-8 py-7">
+  <h1 class="text-2xl font-bold mb-8">Daily tasks</h1>
+  <div class="flex flex-row">
+    {{ range .Response }}
+    <section>
+      <h3 class="font-light">
+        {{ .Day }}
+      </h3>
+      {{ range .Tasks }}
+      <div>
+        {{ .Title }}
+      </div>
+      {{ end }}
+      <input name='task' class="bg-transparent outline-none border-none pt-2.5" placeholder="Write something..." />
     </section>
     {{ end }}
   </div>

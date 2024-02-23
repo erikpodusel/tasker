@@ -1,6 +1,10 @@
 package service
 
-import "time"
+import (
+	"fmt"
+	"tasker/model"
+	"time"
+)
 
 type TasksService struct{}
 
@@ -8,6 +12,10 @@ func (s TasksService) GetToday() time.Time {
 	return time.Now()
 }
 
+/**
+ * Get the current week days starting from Monday to Friday
+ * @return []time.Time
+ */
 func (s TasksService) GetCurrentWeekDays() []time.Time {
 	year, _ := time.Now().ISOWeek()
 	month := time.Now().Month()
@@ -28,4 +36,27 @@ func (s TasksService) GetCurrentWeekDays() []time.Time {
 	}
 
 	return days
+}
+
+func (s TasksService) GetTasksForCurrentWeek() []model.Weekday {
+	weekDays := s.GetCurrentWeekDays()
+	tasks := make([]model.Weekday, len(weekDays))
+
+	for i, day := range weekDays {
+		task := model.Task{
+			Id:           "1",
+			Title:        "Task" + fmt.Sprint(i),
+			Status:       "New",
+			SystemStatus: "NEW",
+		}
+
+		tasks[i] = model.Weekday{
+			Day:   day.Weekday().String(),
+			Tasks: make([]model.Task, 1),
+		}
+
+		tasks[i].Tasks = append(tasks[i].Tasks, task)
+	}
+
+	return tasks
 }

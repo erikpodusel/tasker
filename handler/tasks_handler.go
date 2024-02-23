@@ -4,15 +4,12 @@ import (
 	"html/template"
 	"log"
 	"net/http"
+	"tasker/model"
 	"tasker/service"
 )
 
 type TasksHandler struct {
 	TasksService service.TasksService
-}
-
-type Weekdays struct {
-	Weekdays []string
 }
 
 func (h TasksHandler) ShowTasks(w http.ResponseWriter, r *http.Request) {
@@ -22,12 +19,9 @@ func (h TasksHandler) ShowTasks(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	data := Weekdays{}
-	weekDays := h.TasksService.GetCurrentWeekDays()
-
-	for _, day := range weekDays {
-		data.Weekdays = append(data.Weekdays, day.Weekday().String())
+	response := map[string][]model.Weekday{
+		"Response": h.TasksService.GetTasksForCurrentWeek(),
 	}
 
-	tmpl.ExecuteTemplate(w, "base", data)
+	tmpl.ExecuteTemplate(w, "base", response)
 }
